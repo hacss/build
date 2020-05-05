@@ -52,6 +52,7 @@
   },
   "prettier": "@hacss/prettier-config",
   "dependencies": {
-    "@hacss/core": "^1.0.0"
+    "@hacss/core": "^1.0.0",
+    "globby": "^11.0.0"
   }
 }

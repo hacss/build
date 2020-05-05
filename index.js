@@ -1,5 +1,6 @@
 const hacss = require("@hacss/core");
 const path = require("path");
+const globby = require("globby");
 const {
   promises: { readFile },
 } = require("fs");
@@ -22,5 +23,7 @@ const loadSources = async globs => {
   return sources.join(" ");
 };
 
-module.exports = async ({ sources, config }) =>
-  hacss(await loadSources(sources), loadConfig(config));
+module.exports = async ({ sources, config }) => {
+  const code = await hacss(await loadSources(sources), loadConfig(config));
+  return { code };
+};
