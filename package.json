@@ -46,7 +46,8 @@
   "lint-staged": {
     "*.js": [
       "prettier --parser babel --write",
-      "eslint --cache --fix"
+      "eslint --cache --fix",
+      "npm test"
     ]
   },
   "prettier": "@hacss/prettier-config",
