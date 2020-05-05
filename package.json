@@ -45,7 +45,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write",
+      "prettier --parser babel --write",
       "eslint --cache --fix"
     ]
   },
