@@ -1,3 +1,4 @@
+const hacss = require("@hacss/core");
 const path = require("path");
 const {
   promises: { readFile },

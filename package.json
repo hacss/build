@@ -47,7 +47,10 @@
     "*.js": [
       "eslint --cache --fix",
       "prettier --write"
-    ],
+    ]
   },
-  "prettier": "@hacss/prettier-config"
+  "prettier": "@hacss/prettier-config",
+  "dependencies": {
+    "@hacss/core": "^1.0.0"
+  }
 }
