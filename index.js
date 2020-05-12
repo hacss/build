@@ -28,19 +28,19 @@ module.exports = async ({ sources, config }, ctx) => {
 
   if (ctx.webpack) {
     result.code = result.css;
-  }
 
-  if (result.ignored && result.ignored.length) {
-    const logger = ctx.getLogger ? ctx.getLogger() || console : console;
+    if (result.ignored && result.ignored.length) {
+      const logger = ctx.getLogger ? ctx.getLogger() || console : console;
 
-    logger.warn(`
-Hacss discarded ${
-      result.ignored.length === 1
-        ? "a rule due to an error"
-        : "some rules due to errors"
-    }:
-${result.ignored.map(({ className, error }) => `${className} - ${error}`)}
-    `);
+      logger.warn(`
+  Hacss discarded ${
+    result.ignored.length === 1
+      ? "a rule due to an error"
+      : "some rules due to errors"
+  }:
+  ${result.ignored.map(({ className, error }) => `${className} - ${error}`)}
+      `);
+    }
   }
 
   return result;
