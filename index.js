@@ -26,7 +26,7 @@ const loadSources = async globs => {
 module.exports = async ({ sources, config }, ctx) => {
   const result = await hacss(await loadSources(sources), loadConfig(config));
 
-  if (ctx.webpack) {
+  if (ctx && ctx.webpack) {
     result.code = result.css;
 
     if (result.ignored && result.ignored.length) {
