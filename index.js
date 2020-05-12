@@ -23,7 +23,25 @@ const loadSources = async globs => {
   return sources.join(" ");
 };
 
-module.exports = async ({ sources, config }) => {
-  const code = await hacss(await loadSources(sources), loadConfig(config));
-  return { code };
+module.exports = async ({ sources, config, verbose }, ctx) => {
+  const result = await hacss(await loadSources(sources), loadConfig(config));
+
+  if (ctx.webpack) {
+    result.code = result.css;
+  }
+
+  if (verbose && result.ignored && result.ignored.length) {
+    const logger = ctx.getLogger ? ctx.getLogger() || console : console;
+
+    logger.warn(`
+Hacss discarded ${
+      result.ignored.length === 1
+        ? "a rule due to an error"
+        : "some rules due to errors"
+    }:
+${result.ignored.map(({ className, error }) => `${className} - ${error}`)}
+    `);
+  }
+
+  return result;
 };
