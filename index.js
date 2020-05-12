@@ -23,14 +23,14 @@ const loadSources = async globs => {
   return sources.join(" ");
 };
 
-module.exports = async ({ sources, config, verbose }, ctx) => {
+module.exports = async ({ sources, config }, ctx) => {
   const result = await hacss(await loadSources(sources), loadConfig(config));
 
   if (ctx.webpack) {
     result.code = result.css;
   }
 
-  if (verbose && result.ignored && result.ignored.length) {
+  if (result.ignored && result.ignored.length) {
     const logger = ctx.getLogger ? ctx.getLogger() || console : console;
 
     logger.warn(`
