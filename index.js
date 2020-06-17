@@ -1,9 +1,8 @@
 const hacss = require("@hacss/core");
 const path = require("path");
 const globby = require("globby");
-const {
-  promises: { readFile },
-} = require("fs");
+const { promisify } = require("util");
+const readFile = promisify(require("fs").readFile);
 
 const loadConfig = filePath => {
   if (filePath) {
@@ -12,8 +11,13 @@ const loadConfig = filePath => {
 
   try {
     return loadConfig("hacss.config.js");
-  } catch (_) {
-    return {};
+  } catch (e) {
+    switch (e.code) {
+      case "MODULE_NOT_FOUND":
+        return {};
+      default:
+        throw e;
+    }
   }
 };
 
