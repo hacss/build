@@ -10,7 +10,7 @@ const loadConfig = filePath => {
   }
 
   try {
-    return loadConfig(path.join(process.cwd(), "hacss.config.js"));
+    return loadConfig("hacss.config.js");
   } catch (e) {
     switch (e.code) {
       case "MODULE_NOT_FOUND":
