@@ -12,12 +12,13 @@ const loadConfig = filePath => {
   try {
     return loadConfig("hacss.config.js");
   } catch (e) {
-    switch (e.code) {
-      case "MODULE_NOT_FOUND":
-        return {};
-      default:
-        throw e;
+    if (
+      e.code === "MODULE_NOT_FOUND" &&
+      (e.requireStack || [])[0] === __filename
+    ) {
+      return {};
     }
+    throw e;
   }
 };
 
