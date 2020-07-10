@@ -1,6 +1,6 @@
 {
   "name": "@hacss/build",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Build logic that can be shared between CLI and other tools",
   "main": "index.js",
   "scripts": {
