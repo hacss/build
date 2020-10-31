@@ -24,5 +24,5 @@ const loadConfig = filePath => {
 
 module.exports = ({ sources, config }) =>
   globby(sources)
-    .then(paths => Promise.all(paths.map(p => readFile(p, "utf8"))).join())
-    .then(code => ({ code: hacss(code, loadConfig(config)) }));
+    .then(paths => Promise.all(paths.map(p => readFile(p, "utf8"))))
+    .then(code => ({ code: hacss(code.join(), loadConfig(config)) }));
