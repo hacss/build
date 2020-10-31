@@ -22,31 +22,7 @@ const loadConfig = filePath => {
   }
 };
 
-const loadSources = async globs => {
-  const paths = await globby(globs);
-  const sources = await Promise.all(paths.map(async p => readFile(p, "utf8")));
-  return sources.join(" ");
-};
-
-module.exports = async ({ sources, config }, ctx) => {
-  const result = await hacss(await loadSources(sources), loadConfig(config));
-
-  if (ctx && ctx.webpack) {
-    result.code = result.css;
-
-    if (result.ignored && result.ignored.length) {
-      const logger = ctx.getLogger ? ctx.getLogger() || console : console;
-
-      logger.warn(`
-  Hacss discarded ${
-    result.ignored.length === 1
-      ? "a rule due to an error"
-      : "some rules due to errors"
-  }:
-  ${result.ignored.map(({ className, error }) => `${className} - ${error}`)}
-      `);
-    }
-  }
-
-  return result;
-};
+module.exports = ({ sources, config }) =>
+  globby(sources)
+    .then(paths => Promise.all(paths.map(p => readFile(p, "utf8"))).join())
+    .then(code => ({ code: hacss(code, loadConfig(config)) }));

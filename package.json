@@ -1,6 +1,6 @@
 {
   "name": "@hacss/build",
-  "version": "2.1.6",
+  "version": "3.0.0",
   "description": "Build logic that can be shared between CLI and other tools",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "author": "Nick Saunders",
   "license": "MIT",
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=8.17.0"
   },
   "bugs": {
     "url": "https://github.com/hacss/build/issues"
@@ -52,7 +52,7 @@
   },
   "prettier": "@hacss/prettier-config",
   "dependencies": {
-    "@hacss/core": "^2.1.0",
+    "@hacss/core": "^3.0.0",
     "globby": "^11.0.0"
   }
 }
