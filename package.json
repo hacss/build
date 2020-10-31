@@ -4,6 +4,7 @@
   "description": "Build logic that can be shared between CLI and other tools",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --cache index.js && prettier --parser babel --check index.js",
     "test": "echo \"No tests available.\""
   },
   "repository": {
